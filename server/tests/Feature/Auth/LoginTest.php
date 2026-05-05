@@ -23,8 +23,8 @@ class LoginTest extends TestCase
             ]
         );
 
-        $this->postJson('/api/auth/login', [
-            'email' => 'starff@mail.com',
+        $this->postJson('/api/v1/auth/login', [
+            'email' => 'staff@mail.com',
             'password' => 'staff@2026'
         ])
             ->assertStatus(200)
@@ -49,17 +49,17 @@ class LoginTest extends TestCase
             'password' => bcrypt('staff@2026')
         ]);
 
-        $this->postJson('/api/auth/login', [
+        $this->postJson('/api/v1/auth/login', [
             'email' => 'staff@mail.com',
             'password' => 'wrong'
         ])
             ->assertStatus(401)
-            ->assertJson(['status' => false]);
+            ->assertJson(['success' => false]);
     }
 
     public function test_login_requires_email_and_password(): void
     {
-        $this->postJson('/api/auth/login', [])->assertStatus(422);
+        $this->postJson('/api/v1/auth/login', [])->assertStatus(422);
     }
 }
 
