@@ -28,6 +28,10 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api/v1/auth')
             ->middleware('api')
             ->group(base_path('routes/api.auth.php'));
+
+        Route::prefix('api/v1')
+            ->middleware('api')
+            ->group(base_path('routes/api.catogories.php'));
     }
 
     protected function configureRateLimiting(): void
